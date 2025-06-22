@@ -1,0 +1,13 @@
+# version: "3.8"
+
+services:
+  fastapi_app:
+    build: .
+    container_name: partners_apps_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app
+      - ./db:/app/db

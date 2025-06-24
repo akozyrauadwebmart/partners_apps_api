@@ -10,6 +10,13 @@ from db.clickhouse.client_init import create_client
 import app.schemas as schemas
 
 
+logging.basicConfig(
+    filename='app.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
 app = FastAPI()
 logger = logging.getLogger(__name__)
 
@@ -37,6 +44,8 @@ async def create_event(
         data = [tuple(insert_data.values())]
 
         ch_client.insert(database="partners_apps_db", table="app_events", data=data, column_names=columns)
+        erro = 1 / 0
+        logger.info("Event successfully inserted: %s", insert_data["id"])
         return {"message": "Event successfully inserted."}
     except Exception as ex:
         logger.exception("Failed to insert event into ClickHouse")

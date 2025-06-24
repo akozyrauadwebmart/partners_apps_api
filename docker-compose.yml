@@ -11,3 +11,4 @@ services:
     volumes:
       - ./app:/app/app
       - ./db:/app/db
+      - ./logs:/app/logs

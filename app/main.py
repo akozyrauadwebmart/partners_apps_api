@@ -44,7 +44,6 @@ async def create_event(
         data = [tuple(insert_data.values())]
 
         ch_client.insert(database="partners_apps_db", table="app_events", data=data, column_names=columns)
-        erro = 1 / 0
         logger.info("Event successfully inserted: %s", insert_data["id"])
         return {"message": "Event successfully inserted."}
     except Exception as ex:
